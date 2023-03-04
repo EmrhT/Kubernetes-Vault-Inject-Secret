@@ -1,0 +1,8 @@
+apiVersion: v1 
+kind: ConfigMap 
+metadata:
+  name: mysql-cm
+  namespace: flask-mysql
+data:
+  MYSQL_DATABASE: blogs
+  MYSQL_ROOT_PASSWORD_FILE: /vault/secrets/db-password

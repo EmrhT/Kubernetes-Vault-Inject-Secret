@@ -1,0 +1,6 @@
+{
+    "MYSQL_HOST":"mysql-svc",
+    "MYSQL_USER": "root",
+    "MYSQL_PASSWORD":"prod-passw0rd",
+    "MYSQL_DB":"blogs"
+}

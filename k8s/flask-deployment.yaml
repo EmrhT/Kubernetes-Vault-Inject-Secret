@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  labels:
+    app: flask
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask
+        image: mantislogic/nginx-flask-mysql-backend:v13
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 5
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 5
+          failureThreshold: 3
+          periodSeconds: 10
+        volumeMounts:
+        - name: flask-secret
+          mountPath: /code/config.json
+          subPath: config.json
+          readOnly: true
+        ports:
+        - containerPort: 8000
+      volumes:
+      - name: flask-secret
+        secret:
+          secretName: flask-secret
+          items:
+          - key: config.json
+            path: config.json
