@@ -1,4 +1,4 @@
-# Kubernetes Vault Inject Secret
+# Injecting Secrets into Kubernetes Pods with Hashicorp Vault
 
 A simple use-case with two tier (Flask and MySQL) web application with Vault on Kubernetes.
 
